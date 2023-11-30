@@ -325,4 +325,7 @@ String day = '';
     buscarPartidosPorEquipo();
     boolPartidoEnVivo = false;
   }
+
+ 
 }
+

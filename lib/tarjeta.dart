@@ -47,7 +47,7 @@ class Tarjeta extends StatelessWidget {
                   height: 15,
                   width: size.width,
                   child: Text(
-                    fechaPartido,
+                    comprobarFecha(fechaPartido, status),
                     textAlign: TextAlign.center,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
@@ -81,8 +81,8 @@ class Tarjeta extends StatelessWidget {
                     ]),
                 SizedBox(
                   child: Text(
-                    status != "Final" && status != "1qrt" && status != "2qrt" && status != "3qrt" && status != "4qrt" ? 
-                    hora(status)  : status,
+                   
+                    hora(status), 
                     style: const TextStyle(fontWeight: FontWeight.bold),
                     textAlign: TextAlign.center,
                   ),
@@ -103,7 +103,36 @@ class Tarjeta extends StatelessWidget {
     );
   }
 }
- 
+ String comprobarFecha(String fechaPartido, String status){
+  if (status.split("T")[1].split(":")[0] == "03") {
+   int year = int.parse(fechaPartido.split('-')[0]);
+    int month = int.parse(fechaPartido.split('-')[1]);
+    int day = int.parse(fechaPartido.split('-')[2].trimRight()[14])+1;
+    return DateTime(year, month, day, ) .toString();
+ }
+  else if (status.split("T")[1].split(":")[0] == "01") {
+    int year = int.parse(fechaPartido.split('-')[0]);
+    int month = int.parse(fechaPartido.split('-')[1]);
+    int day = int.parse(fechaPartido.split('-')[2].trimRight()[14])+1;
+    return DateTime(year, month, day, ).toString();
+ }
+  else if (status.split("T")[1].split(":")[0] == "02") {
+    int year = int.parse(fechaPartido.split('-')[0]);
+    int month = int.parse(fechaPartido.split('-')[1]);
+    int day = int.parse(fechaPartido.split('-')[2].trimRight()[14])+1;
+    return DateTime(year, month, day, ).toString();
+ }else if (status.split("T")[1].split(":")[0] == "03") {
+    int year = int.parse(fechaPartido.split('-')[0]);
+    int month = int.parse(fechaPartido.split('-')[1]);
+    int day = int.parse(fechaPartido.split('-')[2].trimRight()[14])+1;
+    return DateTime(year, month, day, ).toString();}
+ else{ int year = int.parse(fechaPartido.split('-')[0]);
+    int month = int.parse(fechaPartido.split('-')[1]);
+    int day = int.parse(fechaPartido.split('-')[2].trimRight()[14]);
+    return DateTime(year, month, day, ).toString();
+
+
+}}
 String hora(String status) {
   if (status.contains('Qtr')) {
     return status;
@@ -122,4 +151,9 @@ String hora(String status) {
   
    return {int.parse(status.split("T")[1].split(":")[0]) - 3}.toString().padRight(3, ":").padRight(5, status.split(":")[2].trimRight()[1]);
   
-}}
+
+}
+
+
+
+}

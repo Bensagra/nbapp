@@ -13,11 +13,10 @@ class Partido {
   TimeOfDay horarioPartido = TimeOfDay(hour: 00, minute: 00);
   final DateTime fechayHora;
 
+
+
   String get fecha {
-    if (status == '1st Qtr' ||
-        status == '2nd Qtr' ||
-        status == '3rd Qtr' ||
-        status == '4th Qtr' ) {
+    if (status.contains('Qtr')) {
       return status;
     }
     if (status.split("T")[1].split(":")[0] == "03") {
